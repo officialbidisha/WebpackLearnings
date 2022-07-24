@@ -10,4 +10,10 @@ module.exports = {
     path: path.resolve(__dirname, "./dist"), // __dirname is the absolute path to the directory containing the source file
   },
   mode: "none",
-  mo
+  module: {
+    rules: [
+      {
+      }
+    ]
+  }
+};
