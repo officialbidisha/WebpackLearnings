@@ -11,8 +11,20 @@ module.exports = {
   },
   mode: "none",
   module: {
+
+    // an array of specific rules
     rules: [
       {
+        test: /\.(ttf)$/,
+        type: 'asset/resource'
+      },
+      {
+        test: /\.(png|jpg)$/,
+        type: 'asset'
+      }, 
+      {
+        test : /\.(txt)$/,
+        type: 'asset/source'
       }
     ]
   }
