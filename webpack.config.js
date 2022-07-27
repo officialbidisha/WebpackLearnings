@@ -32,6 +32,17 @@ module.exports = {
           'style-loader', // this injects the styles produced by css-loader in bundle                                                                                              .js
           'css-loader' // it just returns the contents of css file after reading it.
         ]
+      }, 
+      {
+        test : /\.js$/,
+        exclude: /node_modules/,
+        use:{
+          loader: 'babel-loader',
+          options:{
+            presets: ['@babel/env'],
+            plugins: ['@babel/plugin-proposal-class-properties']
+          }
+        }
       }
     ]
   }
