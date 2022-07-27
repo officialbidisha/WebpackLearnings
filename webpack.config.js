@@ -25,6 +25,13 @@ module.exports = {
       {
         test : /\.(txt)$/,
         type: 'asset/source'
+      },
+      {
+        test: /\.css$/,
+        use:[
+          'style-loader', // this injects the styles produced by css-loader in bundle                                                                                              .js
+          'css-loader' // it just returns the contents of css file after reading it.
+        ]
       }
     ]
   }
