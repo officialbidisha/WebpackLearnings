@@ -70,6 +70,9 @@ module.exports = {
     //   ]
     // }
     ),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      title: 'Hello World',
+      description: 'Some description'
+    })
   ]
 };
