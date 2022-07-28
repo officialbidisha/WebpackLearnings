@@ -5,6 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
  * For clean cache mechanism
  */
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+/**
+ * For updating with md5 in html
+ */
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   // will start from this point when starting the building process
   entry: "./src/index.js",
@@ -13,6 +18,7 @@ module.exports = {
     filename: "bundle.[contenthash].js", // to handle browser caching.
     // path: 'dist', // this result in absolute path error,
     path: path.resolve(__dirname, "./dist"), // __dirname is the absolute path to the directory containing the source file
+    publicPath: ''
   },
   mode: "none",
   module: {
@@ -57,10 +63,13 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'styles.[contenthash].css'
     }),
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns:[
-        // '**/*',
-      ]
-    })
+    new CleanWebpackPlugin(
+    //   {
+    //   cleanOnceBeforeBuildPatterns:[
+    //     // '**/*',
+    //   ]
+    // }
+    ),
+    new HtmlWebpackPlugin()
   ]
 };
