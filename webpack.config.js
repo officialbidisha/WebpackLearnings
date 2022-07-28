@@ -1,12 +1,16 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+/**
+ * For clean cache mechanism
+ */
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
   // will start from this point when starting the building process
   entry: "./src/index.js",
   output: {
     // directory and file where the file should be generated
-    filename: "bundle.js",
+    filename: "bundle.[contenthash].js", // to handle browser caching.
     // path: 'dist', // this result in absolute path error,
     path: path.resolve(__dirname, "./dist"), // __dirname is the absolute path to the directory containing the source file
   },
@@ -51,7 +55,12 @@ module.exports = {
   plugins: [
     new TerserPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'styles.css'
+      filename: 'styles.[contenthash].css'
+    }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns:[
+        // '**/*',
+      ]
     })
   ]
 };
