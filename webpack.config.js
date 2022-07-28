@@ -1,5 +1,6 @@
 const path = require('path');
-
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
   // will start from this point when starting the building process
   entry: "./src/index.js",
@@ -29,7 +30,7 @@ module.exports = {
       {
         test: /\.css$/,
         use:[
-          'style-loader', // this injects the styles produced by css-loader in bundle                                                                                              .js
+          MiniCssExtractPlugin.loader, // this injects the styles produced by css-loader in bundle                                                                                              .js
           'css-loader' // it just returns the contents of css file after reading it.
         ]
       }, 
@@ -45,5 +46,12 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+
+  plugins: [
+    new TerserPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css'
+    })
+  ]
 };
