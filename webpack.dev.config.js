@@ -1,5 +1,4 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 /**
  * For clean cache mechanism
@@ -15,12 +14,13 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     // directory and file where the file should be generated
-    filename: "bundle.[contenthash].js", // to handle browser caching.
+    // filename: "bundle.[contenthash].js", // to handle browser caching.
+    filename: "bundle.js",
     // path: 'dist', // this result in absolute path error,
     path: path.resolve(__dirname, "./dist"), // __dirname is the absolute path to the directory containing the source file
     publicPath: ''
   },
-  mode: "none",
+  mode: "development",
   module: {
 
     // an array of specific rules
@@ -54,12 +54,17 @@ module.exports = {
             plugins: ['@babel/plugin-proposal-class-properties']
           }
         }
+      },
+      {
+        test: /\.hbs$/,
+        use: [
+          'handlebars-loader'
+        ]
       }
     ]
   },
 
   plugins: [
-    new TerserPlugin(),
     new MiniCssExtractPlugin({
       filename: 'styles.[contenthash].css'
     }),
@@ -72,7 +77,9 @@ module.exports = {
     ),
     new HtmlWebpackPlugin({
       title: 'Hello World',
-      description: 'Some description'
+      template:'src/index.hbs',
+      description: 'Some description',
+      
     })
   ]
 };
