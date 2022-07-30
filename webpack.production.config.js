@@ -1,4 +1,6 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 /**
  * For clean cache mechanism
  */
@@ -38,9 +40,10 @@ module.exports = {
       {
         test: /\.css$/,
         use:[
-          // MiniCssExtractPlugin.loader, // this injects the styles produced by css-loader in bundle   \
-          'style-loader',  'css-loader' // it just returns the contents of css file after reading it.
+          MiniCssExtractPlugin.loader, // this injects the styles produced by css-loader in bundle                                                                                              .js
+          'css-loader' // it just returns the contents of css file after reading it.
         ]
+
       }, 
       {
         test : /\.js$/,
