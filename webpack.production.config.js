@@ -1,6 +1,5 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
 /**
  * For clean cache mechanism
  */
@@ -66,6 +65,9 @@ module.exports = {
   },
 
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'styles.[contenthash].css'
+    }),
     new CleanWebpackPlugin(
     //   {
     //   cleanOnceBeforeBuildPatterns:[
