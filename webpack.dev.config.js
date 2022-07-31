@@ -12,11 +12,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // will start from this point when starting the building process
-  entry: "./src/index.js",
+  // entry: "./src/index.js",
+  entry: {
+    "hello-world": "./src/hello-world.js",
+    kiwi: "./src/kiwi.js",
+  },
   output: {
     // directory and file where the file should be generated
     // filename: "bundle.[contenthash].js", // to handle browser caching.
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     // path: 'dist', // this result in absolute path error,
     path: path.resolve(__dirname, "./dist"), // __dirname is the absolute path to the directory containing the source file
     publicPath: ''
@@ -85,10 +89,21 @@ module.exports = {
     // }
     ),
     new HtmlWebpackPlugin({
-      title: 'Hello World',
-      template:'src/index.hbs',
-      description: 'Some description',
-      
-    })
+      filename: 'hello-world.html',
+      chunks: [
+          'hello-world'
+      ],
+      title: "Hello World",
+      template: "src/page-template.hbs",
+      description: "Hello world",
+    }),
+
+    new HtmlWebpackPlugin({
+      filename: 'kiwi.html',
+      chunks: ['kiwi'],
+      title: "Kiwi",
+      template: "src/page-template.hbs",
+      description: "Kiwi",
+    }),
   ]
 };

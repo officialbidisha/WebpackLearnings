@@ -1,6 +1,6 @@
 import Heading from "./components/heading/heading.js";
 import KiwiImage from "./components/kiwi-image/kiwi-image.js";
-import _ from 'loadash';
+var _ = require('lodash');
 
 const heading = new Heading(_.upperFirst("kiwi"));
 heading.render();
