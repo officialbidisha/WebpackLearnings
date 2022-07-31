@@ -1,0 +1,21 @@
+.hello-world-button{
+    font-size: 20px;
+    padding: 7px 15px;
+    background: green;
+    color: white;
+    outline: none;
+}
+
+.hello-world-paragraph{
+    color: green;
+    font-weight: bold;
+}
+.kiwi-image {
+    display: block;
+    width: 400px;
+    height: auto;
+}
+
+h1{
+    color:gray;
+}
